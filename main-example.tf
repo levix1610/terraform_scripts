@@ -1,4 +1,5 @@
-# Example of a .tf config
+# Example of a .tf config using the older format of telmate. Moving over to bpg format because its more modern.
+
 
 terraform {
     required_providers {
