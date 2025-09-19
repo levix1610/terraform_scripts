@@ -11,10 +11,9 @@ terraform {
 
 # Connection/communication to the server
 provider "proxmox" {
-    pm_api_url          = "https://10.0.250.70:8006/"  # URL to the proxmox server
-    pm_api_token_id     = "levix@pve!terraform"        # Name of the API token
-    pm_api_token_secret = "014f8653-7e65-406d-8cb0-375504bc8764"    # The API secret. Will later be stored in vault. THIS is for test and OK for now to throw in here.
-    pm_tls_insecure     = true
+    endpoint            = "https://10.0.250.70:8006/"
+    api_token           = "levix@pve!terraform=014f8653-7e65-406d-8cb0-375504bc8764"  # User and api key token.
+    insecure            = true
   
 }
 
