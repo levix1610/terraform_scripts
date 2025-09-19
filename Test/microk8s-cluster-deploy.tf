@@ -67,6 +67,10 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
             ]
         }
     }
+
+     timeouts {
+        create = "5m" # This gives Terraform 5 minutes to create the VM
+    }
   
 }
 
@@ -118,6 +122,10 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
             ]
         }
     }
+
+    timeouts {
+        create = "5m" # This gives Terraform 5 minutes to create the VM
+    }
   
 }
 
@@ -168,6 +176,10 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
             ]
         }
+    }
+
+    timeouts {
+        create = "5m" # This gives Terraform 5 minutes to create the VM
     }
   
 }
@@ -228,6 +240,10 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
             ]
         }
     }
+
+    timeouts {
+        create = "5m" # This gives Terraform 5 minutes to create the VM
+    }
   
 }
 
@@ -285,6 +301,10 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
             ]
         }
+    }
+
+    timeouts {
+        create = "5m" # This gives Terraform 5 minutes to create the VM
     }
   
 }
