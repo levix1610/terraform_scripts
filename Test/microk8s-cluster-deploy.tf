@@ -28,7 +28,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     name                = "vmus-test-k8s-01"
     
     clone {
-        vm_id           = "150" # VM ID of the template
+        vm_id           = "110" # VM ID of the template
         full            = true
     }
     
@@ -80,7 +80,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
     name                = "vmus-test-k8s-02"
     
     clone {
-        vm_id           = "150" # VM ID of the template
+        vm_id           = "110" # VM ID of the template
         full            = true
     }
     
@@ -132,7 +132,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
     name                = "vmus-test-k8s-03"
     
     clone {
-        vm_id           = "150" # VM ID of the template
+        vm_id           = "110" # VM ID of the template
         full            = true
     }
     
@@ -184,7 +184,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
     name                = "vmus-test-k8s-04"
     
     clone {
-        vm_id           = "150" # VM ID of the template
+        vm_id           = "110" # VM ID of the template
         full            = true
     }
     
@@ -243,7 +243,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
     name                = "vmus-test-k8s-05"
     
     clone {
-        vm_id           = "150" # VM ID of the template
+        vm_id           = "110" # VM ID of the template
         full            = true
     }
     
