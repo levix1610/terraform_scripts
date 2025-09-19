@@ -66,6 +66,13 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
             ]
         }
+
+          # This is the key part that installs the SSH server.
+        runcmd = [
+            "apt-get update",
+            "apt-get install -y openssh-server",
+            "systemctl enable ssh --now"
+        ]
     }
 
 }
