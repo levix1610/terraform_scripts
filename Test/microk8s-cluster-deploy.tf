@@ -1,4 +1,5 @@
 # Terraform deployment file for deploying my test microk8s clustercheck
+# Timeouts not supported from what I can find.  Suggest running as terraform apply -parallelism=1
 
 # State the provider we need for the deployment
 terraform {
@@ -26,11 +27,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     node_name           = "pmx-test-gr-01"
     name                = "vmus-test-k8s-01"
     
-
-    timeouts {
-        create = "5m" # This gives Terraform 5 minutes to create the VM
-    }
-
     clone {
         vm_id           = "150" # VM ID of the template
         full            = true
@@ -125,9 +121,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
         }
     }
 
-    timeouts {
-        create = "5m" # This gives Terraform 5 minutes to create the VM
-    }
   
 }
 
@@ -180,9 +173,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
         }
     }
 
-    timeouts {
-        create = "5m" # This gives Terraform 5 minutes to create the VM
-    }
   
 }
 
@@ -243,9 +233,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
         }
     }
 
-    timeouts {
-        create = "5m" # This gives Terraform 5 minutes to create the VM
-    }
   
 }
 
@@ -305,8 +292,5 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
         }
     }
 
-    timeouts {
-        create = "5m" # This gives Terraform 5 minutes to create the VM
-    }
   
 }
