@@ -57,7 +57,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
      # Config for Cloud-Init settings to inject SSH key
     initialization {
         # Add Hostname
-        hostname = "vmus-test-k8s-01"
+        #hostname = "vmus-test-k8s-01"
 
         # User to add the ssh key for
         user_account {
@@ -108,7 +108,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
     # Config for Cloud-Init settings to inject SSH key
     initialization {
         # Add Hostname
-        hostname = "vmus-test-k8s-02"
+        #hostname = "vmus-test-k8s-02"
 
         # User to add the ssh key for
         user_account {
@@ -159,7 +159,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
     # Config for Cloud-Init settings to inject SSH key
     initialization {
         # Add Hostname
-        hostname = "vmus-test-k8s-03"
+        #hostname = "vmus-test-k8s-03"
 
         # User to add the ssh key for
         user_account {
@@ -218,7 +218,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
     # Config for Cloud-Init settings to inject SSH key
     initialization {
         # Add Hostname
-        hostname = "vmus-test-k8s-04"
+        #hostname = "vmus-test-k8s-04"
 
         # User to add the ssh key for
         user_account {
@@ -276,7 +276,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
     # Config for Cloud-Init settings to inject SSH key
     initialization {
         # Add Hostname
-        hostname = "vmus-test-k8s-05"
+        #hostname = "vmus-test-k8s-05"
 
         # User to add the ssh key for
         user_account {
