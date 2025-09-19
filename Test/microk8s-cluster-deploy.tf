@@ -68,7 +68,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
         }
     }
 
-     timeouts {
+    timeouts {
         create = "5m" # This gives Terraform 5 minutes to create the VM
     }
   
