@@ -27,7 +27,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     name                = "vmus-test-k8s-01"
     
     clone {
-        vm_id           = "150" # VM ID of the template/testing another method with 150.
+        vm_id           = "110" # VM ID of the template.
         full            = true
     }
     
