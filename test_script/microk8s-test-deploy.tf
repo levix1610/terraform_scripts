@@ -27,7 +27,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     name                = "vmus-test-k8s-01"
     
     clone {
-        vm_id           = "110" # VM ID of the template
+        vm_id           = "150" # VM ID of the template/testing another method with 150.
         full            = true
     }
     
@@ -67,12 +67,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
             ]
         }
 
-          # This is the key part that installs the SSH server.
-        runcmd = [
-            "apt-get update",
-            "apt-get install -y openssh-server",
-            "systemctl enable ssh --now"
-        ]
     }
 
 }
