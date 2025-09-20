@@ -22,7 +22,7 @@ provider "proxmox" {
 # First VM of the cluster
 
 resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
-    #vm_id               = 1010060 # assigns the VM ID - Commented out for now during testing.
+    vm_id               = 1010060 # assigns the VM ID - Commented out for now during testing.
     node_name           = "pmx-test-gr-01"
     name                = "vmus-test-k8s-01"
     
