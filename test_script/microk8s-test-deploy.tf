@@ -67,16 +67,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
             ]
         }
 
-           # Configure the network to use DHCP
-        network_config {
-            ethernets {
-                enp0s18 = { # The name of your network interface
-                    dhcp4 = true
-                }
-            }
-
-        }
-
     }   
 
 }
