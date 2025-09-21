@@ -1,5 +1,5 @@
 # Terraform deployment file for deploying my test microk8s clustercheck
-# Timeouts not supported from what I can find.  Suggest running as terraform apply -parallelism=1
+# Timeouts not supported from what I can find.  Suggest running as terraform apply -parallelism=1 if it fails
 
 # State the provider we need for the deployment
 terraform {
