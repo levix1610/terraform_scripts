@@ -12,7 +12,7 @@ output "all_vm_details" {
       proxmox_virtual_environment_vm.vmus-test-k8s-05
     ] : vm.name => {
       hostname = vm.name
-      ip       = tolist(vm.ipv4_addresses)[0]
+      ip       = tolist(vm.IP)[0]
     }
   }
 }
