@@ -27,7 +27,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     name                = "vmus-test-k8s-01"
     
     clone {
-        vm_id           = "900" # VM ID of the template. Trying with a modified version.
+        vm_id           = "800" # VM ID of the template. Trying with a modified version.
         full            = true
     }
     
@@ -56,9 +56,14 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     }
 
      # Config for Cloud-Init settings to inject SSH key
-    initialization {
-        # Add Hostname
-        #hostname = "vmus-test-k8s-01"
+        initialization {
+            network_config {
+                ethernets {
+                    eth0 = {
+                        dhcp4 = true
+                    }
+            }
+        }
 
         # User to add the ssh key for
         user_account {
