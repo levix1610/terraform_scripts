@@ -4,11 +4,11 @@
 
 resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     vm_id               = 1010060 # assigns the VM ID - Commented out for now during testing.
-    node_name           = "pmx-test-gr-01"
+    node_name           = var.proxmox_node
     name                = "vmus-test-k8s-01"
     
     clone {
-        vm_id           = "900" # VM ID of the template
+        vm_id           = var.template_id # VM ID of the template
         full            = true
     }
     
@@ -21,7 +21,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     }
     
     disk {
-        datastore_id    = "NNMe_01"
+        datastore_id    = var.vm_datastore
         interface       = "scsi0"
         size            = 30
         discard         = "on"
@@ -37,14 +37,12 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
 
      # Config for Cloud-Init settings to inject SSH key
     initialization {
-        # Add Hostname
-        #hostname = "vmus-test-k8s-01"
 
         # User to add the ssh key for
         user_account {
             username    = "levix"
             keys        = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
+                file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
     }
@@ -56,11 +54,11 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
 
 resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
     vm_id               = 1010061 # assigns the VM ID - Commented out for now during testing.
-    node_name           = "pmx-test-gr-01"
+    node_name           = var.proxmox_node
     name                = "vmus-test-k8s-02"
     
     clone {
-        vm_id           = "900" # VM ID of the template
+        vm_id           = var.template_id # VM ID of the template
         full            = true
     }
     
@@ -73,7 +71,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
     }
     
     disk {
-        datastore_id    = "NNMe_01"
+        datastore_id    = var.vm_datastore
         interface       = "scsi0"
         size            = 30
         discard         = "on"
@@ -89,14 +87,12 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
 
     # Config for Cloud-Init settings to inject SSH key
     initialization {
-        # Add Hostname
-        #hostname = "vmus-test-k8s-02"
 
         # User to add the ssh key for
         user_account {
             username    = "levix"
             keys        = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
+                file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
     }
@@ -108,11 +104,11 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
 
 resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
     vm_id               = 1010062 # assigns the VM ID - Commented out for now during testing.
-    node_name           = "pmx-test-gr-01"
+    node_name           = var.proxmox_node
     name                = "vmus-test-k8s-03"
     
     clone {
-        vm_id           = "900" # VM ID of the template
+        vm_id           = var.template_id # VM ID of the template
         full            = true
     }
     
@@ -125,7 +121,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
     }
     
     disk {
-        datastore_id    = "NNMe_01"
+        datastore_id    = var.vm_datastore
         interface       = "scsi0"
         size            = 30
         discard         = "on"
@@ -141,14 +137,12 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
 
     # Config for Cloud-Init settings to inject SSH key
     initialization {
-        # Add Hostname
-        #hostname = "vmus-test-k8s-03"
 
         # User to add the ssh key for
         user_account {
             username    = "levix"
             keys        = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
+                file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
     }
@@ -160,11 +154,11 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
 
 resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
     vm_id               = 1010063 # assigns the VM ID - Commented out for now during testing.
-    node_name           = "pmx-test-gr-01"
+    node_name           = var.proxmox_node
     name                = "vmus-test-k8s-04"
     
     clone {
-        vm_id           = "900" # VM ID of the template
+        vm_id           = var.template_id # VM ID of the template
         full            = true
     }
     
@@ -177,7 +171,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
     }
     
     disk {
-        datastore_id    = "NNMe_01"
+        datastore_id    = var.vm_datastore
         interface       = "scsi0"
         size            = 30
         discard         = "on"
@@ -201,14 +195,12 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
 
     # Config for Cloud-Init settings to inject SSH key
     initialization {
-        # Add Hostname
-        #hostname = "vmus-test-k8s-04"
 
         # User to add the ssh key for
         user_account {
             username    = "levix"
             keys        = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
+                file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
     }
@@ -219,11 +211,11 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
 # Fifth VM of the Cluster - Worker Only Node
 resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
     vm_id               = 1010064 # assigns the VM ID - Commented out for now during testing.
-    node_name           = "pmx-test-gr-01"
+    node_name           = var.proxmox_node
     name                = "vmus-test-k8s-05"
     
     clone {
-        vm_id           = "900" # VM ID of the template
+        vm_id           = var.template_id # VM ID of the template
         full            = true
     }
     
@@ -236,7 +228,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
     }
     
     disk {
-        datastore_id    = "NNMe_01"
+        datastore_id    = var.vm_datastore
         interface       = "scsi0"
         size            = 30
         discard         = "on"
@@ -260,14 +252,12 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
 
     # Config for Cloud-Init settings to inject SSH key
     initialization {
-        # Add Hostname
-        #hostname = "vmus-test-k8s-05"
 
         # User to add the ssh key for
         user_account {
             username    = "levix"
             keys        = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/Qmop0kZHeRThFvDx0y4uKxkNsgnpYjAv1jRPrVLsv" # microk8s test pub key
+                file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
     }
