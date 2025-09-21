@@ -52,6 +52,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:ED:F6:33"
         vlan_id         = 100
+        firewall        = true
     }
 
      # Config for Cloud-Init settings to inject SSH key
