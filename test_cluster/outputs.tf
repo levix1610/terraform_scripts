@@ -1,13 +1,18 @@
 # Data output after all scripts have run.
 
 
-
 output "all_vm_details" {
-  description = "Map of all VMs with their IP address and hostname."
+  description = "A map of all VMs with their hostname and IP address."
   value = {
-    "vmus-test-k8s-01" = {
-      ip       = proxmox_virtual_environment_vm.vmus-test-k8s-01.ipv4_addresses[0]
-      hostname = proxmox_virtual_environment_vm.vmus-test-k8s-01.name
+    for vm in [
+      proxmox_virtual_environment_vm.vmus-test-k8s-01,
+      proxmox_virtual_environment_vm.vmus-test-k8s-02,
+      proxmox_virtual_environment_vm.vmus-test-k8s-03,
+      proxmox_virtual_environment_vm.vmus-test-k8s-04,
+      proxmox_virtual_environment_vm.vmus-test-k8s-05
+    ] : vm.name => {
+      hostname = vm.name
+      ip       = tolist(vm.ipv4_addresses)[0]
     }
   }
 }
