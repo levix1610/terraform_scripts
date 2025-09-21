@@ -33,6 +33,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:ED:F6:33"
         vlan_id         = 100
+        firewall        = true
     }
 
      # Config for Cloud-Init settings to inject SSH key
@@ -83,6 +84,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:3A:06:E0"
         vlan_id         = 100
+        firewall        = true
     }
 
     # Config for Cloud-Init settings to inject SSH key
@@ -133,6 +135,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:AA:36:5F"
         vlan_id         = 100
+        firewall        = true
     }
 
     # Config for Cloud-Init settings to inject SSH key
@@ -183,6 +186,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:0D:E4:D1"
         vlan_id         = 100
+        firewall        = true
     }
 
     # MGMT VLAN NIC
@@ -190,6 +194,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:B2:54:72"
         vlan_id         = 250
+        firewall        = true
     }
 
 
@@ -240,6 +245,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:2D:57:09"
         vlan_id         = 100
+        firewall        = true
     }
 
     # MGMT VLAN NIC
@@ -247,6 +253,7 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
         bridge          = "vmbr1"
         mac_address     = "BC:24:11:D8:D0:29"
         vlan_id         = 250
+        firewall        = true
     }
 
 
