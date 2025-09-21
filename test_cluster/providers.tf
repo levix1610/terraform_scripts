@@ -13,7 +13,7 @@ terraform {
 # Connection/communication to the server
 provider "proxmox" {
     endpoint            = "https://10.0.250.70:8006/"
-    api_token           = "levix@pve!terraform=014f8653-7e65-406d-8cb0-375504bc8764"  # User and api key token.
+    pm_api_token_id     = var.api_token_id
+    pm_api_token_secret = var.api_token_secret
     insecure            = true
-  
 }
