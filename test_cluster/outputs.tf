@@ -8,5 +8,5 @@ output "vm_hostnames" {
 
 output "vm_ip_addresses" {
   description = "The IP addresses of the Kubernetes nodes."
-  value       = proxmox_virtual_environment_vm.vmus-test-k8s-01.ipv4_address
+  value       = proxmox_virtual_environment_vm.vmus-test-k8s-01.ipv4_addresses
 }
