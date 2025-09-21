@@ -57,17 +57,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
 
      # Config for Cloud-Init settings to inject SSH key
         initialization {
-            cloud_init_yaml = <<-EOT
-                #cloud-config
-                    network:
-                        version: 2
-                        ethernets:
-                            eth0:
-                                dhcp4: true
-                                dhcp6: false
-                                accept-ra: false
-                                ipv6-disable: true
-            EOT
 
         # User to add the ssh key for
         user_account {
