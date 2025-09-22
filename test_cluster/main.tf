@@ -208,18 +208,6 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
                 file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
-          network_interfaces = [
-        {
-            name = "eth0"
-            dhcp = true
-            mac_address = "bc:24:11:0d:e4:d1" # Optional, but good practice
-        },
-        {
-            name = "eth1"
-            dhcp = true
-            mac_address = "bc:24:11:b2:54:72" # Optional, but good practice
-        }
-    ]
     }
 
   
