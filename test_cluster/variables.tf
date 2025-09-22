@@ -15,7 +15,7 @@ variable "ssh_pub_file" {
 variable "template_id" {
   type        = number
   description = "The VMID of the golden image template to clone from."
-  default     = 900
+  default     = 800
 }
 
 variable "vm_datastore" {
