@@ -208,6 +208,22 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
                 file(var.ssh_pub_file) # microk8s pub key file.
             ]
         }
+         cloud_init_yaml = <<-EOT
+            #cloud-config
+            network:
+            version: 2
+            ethernets:
+                eth0:
+                match:
+                    macaddress: "bc:24:11:0d:e4:d1"
+                dhcp4: true
+                set-name: "eth0"
+                eth1:
+                match:
+                    macaddress: "bc:24:11:b2:54:72"
+                dhcp4: true
+                set-name: "eth1"
+        EOT
     }
 
   
