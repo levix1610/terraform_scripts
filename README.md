@@ -1,3 +1,1 @@
-# terraform_test
-
-# Repo for storing test env terraform config files.
+This repo is for the terraform script build out for all my Virtual machines for the day 0 deployment.
