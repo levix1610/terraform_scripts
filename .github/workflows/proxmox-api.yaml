@@ -1,0 +1,57 @@
+name: 'Terraform Proxmox CI/CD'
+
+on:
+  push:
+    branches:
+      - main
+      - github_secrets
+  pull_request:
+    branches:
+      - main
+      - github_secrets
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: 'Terraform Operations'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        # This globally sets the working directory for all 'run' steps
+        working-directory: ./test_cluster
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Installs the Terraform CLI and adds it to PATH
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+
+      # Initializes the backend and downloads providers
+      - name: Terraform Init
+        run: terraform init
+
+      # Ensures the configuration is syntactically valid and internally consistent
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Generates an execution plan for review on every push and pull request
+      - name: Terraform Plan
+        run: terraform plan
+        env:
+          # Securely injects GitHub Secrets as TF_VAR environment variables
+          # TF_VAR_variable_name maps to variable "variable_name" in HCL
+          TF_VAR_api_token_id: ${{ secrets.API_TOKEN_ID }} 
+          TF_VAR_api_token_secret: ${{ secrets.API_TOKEN_SECRET }}
+          
+      - name: Terraform Apply
+        # Only applies changes when merging/pushing directly to the 'main' branch
+        if: github.ref == 'refs/heads/github_secrets' && github.event_name == 'push'
+        run: terraform apply -auto-approve
+        env:
+          # Securely pass secrets again for the apply step
+          TF_VAR_api_token_id: ${{ secrets.API_TOKEN_ID}} 
+          TF_VAR_api_token_secret: ${{ secrets.API_TOKEN_SECRET }}
