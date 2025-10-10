@@ -1,273 +1,55 @@
-# Define the resources that will be provisioned
+resource "proxmox_virtual_environment_vm" "k8s_cluster_nodes" {
+  for_each  = var.k8s_cluster_nodes
 
-# First VM of the cluster
 
-resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
-    vm_id               = 1010060 # assigns the VM ID - Commented out for now during testing.
-    node_name           = var.proxmox_node
-    name                = "vmus-test-k8s-01"
-    
-    clone {
-        vm_id           = var.template_id # VM ID of the template
-        full            = true
-    }
-    
-    cpu {
-      cores             = 4
-    }
-    
-    memory {
-      dedicated         = 4096
-    }
-    
-    disk {
-        datastore_id    = var.vm_datastore
-        interface       = "scsi0"
-        size            = 30
-        discard         = "on"
-        ssd             = true
-    }
-    
-    # Test Server VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:ED:F6:33"
-        vlan_id         = 100
-        firewall        = true
-    }
+  # Node-specific properties
+  vm_id     = each.value.vmid
+  name      = each.value.name
 
-     # Config for Cloud-Init settings to inject SSH key
-    initialization {
-
-        # User to add the ssh key for
-        user_account {
-            username    = "levix"
-            keys        = [
-                file(var.ssh_pub_file) # microk8s pub key file.
-            ]
-        }
-    }
-
+  # Common properties from module inputs
+  node_name = var.proxmox_node
   
-}
+  clone {
+    vm_id = var.template_id
+    full  = true
+  }
 
-# Second VM of the cluster
+  cpu { cores = 4 }
+  memory { dedicated = 4096 }
 
-resource "proxmox_virtual_environment_vm" "vmus-test-k8s-02" {
-    vm_id               = 1010061 # assigns the VM ID - Commented out for now during testing.
-    node_name           = var.proxmox_node
-    name                = "vmus-test-k8s-02"
-    
-    clone {
-        vm_id           = var.template_id # VM ID of the template
-        full            = true
-    }
-    
-    cpu {
-      cores             = 4
-    }
-    
-    memory {
-      dedicated         = 4096
-    }
-    
-    disk {
-        datastore_id    = var.vm_datastore
-        interface       = "scsi0"
-        size            = 30
-        discard         = "on"
-        ssd             = true
-    }
-    
-    # Test Server VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:3A:06:E0"
-        vlan_id         = 100
-        firewall        = true
-    }
+  disk {
+    datastore_id = var.vm_datastore
+    interface    = "scsi0"
+    size         = 30
+    discard      = "on"
+    ssd          = true
+  }
 
-    # Config for Cloud-Init settings to inject SSH key
-    initialization {
+  # Network Device 1: K8s Data VLAN (Primary)
+  network_device {
+    bridge      = "vmbr1"
+    mac_address = each.value.prime_nic
+    vlan_id     = var.vlan_id_primary
+    firewall    = true
+  }
 
-        # User to add the ssh key for
-        user_account {
-            username    = "levix"
-            keys        = [
-                file(var.ssh_pub_file) # microk8s pub key file.
-            ]
-        }
+  # Network Device 2: K8s Data VLAN (Secondary) - Conditional
+  dynamic "network_device" {
+    for_each = each.value.sec_nic != null ? [1] : []
+    content {
+      bridge      = "vmbr1"
+      mac_address = each.value.sec_nic
+      vlan_id     = var.vlan_id_secondary
+      firewall    = true
     }
+  }
 
-  
-}
-
-# Third VM of the cluster
-
-resource "proxmox_virtual_environment_vm" "vmus-test-k8s-03" {
-    vm_id               = 1010062 # assigns the VM ID - Commented out for now during testing.
-    node_name           = var.proxmox_node
-    name                = "vmus-test-k8s-03"
-    
-    clone {
-        vm_id           = var.template_id # VM ID of the template
-        full            = true
+  initialization {
+    user_account {
+      username = "levix"
+      keys     = [
+        file(var.ssh_pub_file)
+      ]
     }
-    
-    cpu {
-      cores             = 4
-    }
-    
-    memory {
-      dedicated         = 4096
-    }
-    
-    disk {
-        datastore_id    = var.vm_datastore
-        interface       = "scsi0"
-        size            = 30
-        discard         = "on"
-        ssd             = true
-    }
-    
-    # Test Server VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:AA:36:5F"
-        vlan_id         = 100
-        firewall        = true
-    }
-
-    # Config for Cloud-Init settings to inject SSH key
-    initialization {
-
-        # User to add the ssh key for
-        user_account {
-            username    = "levix"
-            keys        = [
-                file(var.ssh_pub_file) # microk8s pub key file.
-            ]
-        }
-    }
-
-  
-}
-
-# Fourth VM of the cluster - Worker Only Node
-
-resource "proxmox_virtual_environment_vm" "vmus-test-k8s-04" {
-    vm_id               = 1010063 # assigns the VM ID - Commented out for now during testing.
-    node_name           = var.proxmox_node
-    name                = "vmus-test-k8s-04"
-    
-    clone {
-        vm_id           = var.template_id # VM ID of the template
-        full            = true
-    }
-    
-    cpu {
-      cores             = 4
-    }
-    
-    memory {
-      dedicated         = 4096
-    }
-    
-    disk {
-        datastore_id    = var.vm_datastore
-        interface       = "scsi0"
-        size            = 30
-        discard         = "on"
-        ssd             = true
-    }
-    
-    # Test Server VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:0D:E4:D1"
-        vlan_id         = 100
-        firewall        = true
-    }
-
-    # MGMT VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:B2:54:72"
-        vlan_id         = 250
-        firewall        = true
-    }
-
-
-    # Config for Cloud-Init settings to inject SSH key
-    initialization {
-
-        # User to add the ssh key for
-        user_account {
-            username    = "levix"
-            keys        = [
-                file(var.ssh_pub_file) # microk8s pub key file.
-            ]
-        }
-    }
-
-  
-}
-
-# Fifth VM of the Cluster - Worker Only Node
-resource "proxmox_virtual_environment_vm" "vmus-test-k8s-05" {
-    vm_id               = 1010064 # assigns the VM ID - Commented out for now during testing.
-    node_name           = var.proxmox_node
-    name                = "vmus-test-k8s-05"
-    
-    clone {
-        vm_id           = var.template_id # VM ID of the template
-        full            = true
-    }
-    
-    cpu {
-      cores             = 4
-    }
-    
-    memory {
-      dedicated         = 4096
-    }
-    
-    disk {
-        datastore_id    = var.vm_datastore
-        interface       = "scsi0"
-        size            = 30
-        discard         = "on"
-        ssd             = true
-    }
-    
-    # Test Server VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:2D:57:09"
-        vlan_id         = 100
-        firewall        = true
-    }
-
-    # MGMT VLAN NIC
-    network_device {
-        bridge          = "vmbr1"
-        mac_address     = "BC:24:11:D8:D0:29"
-        vlan_id         = 250
-        firewall        = true
-    }
-
-
-    # Config for Cloud-Init settings to inject SSH key
-    initialization {
-
-        # User to add the ssh key for
-        user_account {
-            username    = "levix"
-            keys        = [
-                file(var.ssh_pub_file) # microk8s pub key file.
-            ]
-        }
-    }
-
-  
+  }
 }

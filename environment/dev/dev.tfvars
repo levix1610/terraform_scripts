@@ -22,6 +22,8 @@ proxmox_node = "pmx-test-gr-01"
 ssh_pub_file = "~/.ssh/microk8s_test_key.pub"
 template_id = 800
 vm_datastore = "NNMe_01"
+vlan_id_primary = 100
+vlan_id_secondary = 250
 # Env variables for API Details
 api_token_id = TF_VAR_test_api_token_id
 api_token_secret = TF_VAR_test_api_token_secret
