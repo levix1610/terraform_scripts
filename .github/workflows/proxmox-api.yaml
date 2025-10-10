@@ -1,21 +1,16 @@
-name: 'Terraform Proxmox CI/CD'
+name: 'Terraform Proxmox Manual Deploy'
+
 
 on:
-  push:
-    branches:
-      - main
-      - github_secrets
-  pull_request:
-    branches:
-      - main
-      - github_secrets
-  # Allows you to run this workflow manually from the Actions tab
+ # The workflow can now ONLY be started manually from the Actions tab on GitHub.
   workflow_dispatch:
+  
 
 jobs:
   terraform:
-    name: 'Terraform Operations'
-    runs-on: ubuntu-latest
+    name: 'Terraform Plan & Apply (Manual)'
+    # Requires your local server to have the self-hosted runner running
+    runs-on: self-hosted
 
     defaults:
       run:
@@ -47,11 +42,9 @@ jobs:
           TF_VAR_api_token_id: ${{ secrets.API_TOKEN_ID }} 
           TF_VAR_api_token_secret: ${{ secrets.API_TOKEN_SECRET }}
           
+      # This step immediately applies the plan because the workflow was manually triggered.
       - name: Terraform Apply
-        # Only applies changes when merging/pushing directly to the 'main' branch
-        if: github.ref == 'refs/heads/github_secrets' && github.event_name == 'push'
         run: terraform apply -auto-approve
         env:
-          # Securely pass secrets again for the apply step
           TF_VAR_api_token_id: ${{ secrets.API_TOKEN_ID}} 
           TF_VAR_api_token_secret: ${{ secrets.API_TOKEN_SECRET }}
