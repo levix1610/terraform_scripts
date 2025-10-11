@@ -1,7 +1,7 @@
 # variable to hold all vm details
 
 
-variable "k8s_cluster_nodes" {
+k8s_cluster_nodes = {
   description = "Configuration map for all K8s test cluster nodes."
     "vmus-k8s-01" = { vmid = 1010060, name = "vmus-test-k8s-01", prime_nic = "BC:24:11:ED:F6:33" },
     "vmus-k8s-02" = { vmid = 1010061, name = "vmus-test-k8s-02", prime_nic = "BC:24:11:3A:06:E0" },
