@@ -26,7 +26,8 @@ provider "proxmox" {
 
     module "microk8s_deployment" {
     # This tells Terraform where your core logic is located
-    source = "../../../microk8s_cluster" 
+    source = "../../../microk8s_cluster"
+
 
     # Pass all required variables from the Root Module to the Child Module.
     # The values for these variables (e.g., k8s_cluster_nodes) 
