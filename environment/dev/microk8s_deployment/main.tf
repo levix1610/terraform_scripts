@@ -15,7 +15,7 @@ terraform {
 # Connection/communication to the server
 provider "proxmox" {
     endpoint            = "https://10.0.250.70:8006/"
-    api_token           = "${var.api_token_id}=${var.api_token_secret}"
+    api_token           = "${var.test_api_token_id}=${var.test_api_token_secret}"
     insecure            = true
 }
 
@@ -45,8 +45,8 @@ provider "proxmox" {
     vlan_id_secondary   = var.vlan_id_secondary
     
     # API Credentials (passing the values received from TF_VAR_... env vars):
-    api_token_id        = var.api_token_id
-    api_token_secret    = var.api_token_secret
+    api_token_id        = var.test_api_token_id
+    api_token_secret    = var.test_api_token_secret
     
     # ... include all other variables required by the microk8s_cluster module
 }
