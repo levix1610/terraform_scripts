@@ -1,7 +1,7 @@
-resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
-    vm_id               = 1010060 # assigns the VM ID - Commented out for now during testing.
+resource "proxmox_virtual_environment_vm" "generic_vm_module" {
+    vm_id               = var.vm_id
     node_name           = var.proxmox_node
-    name                = "vmus-test-k8s-01"
+    name                = var.vm_name
     
     clone {
         vm_id           = var.template_id # VM ID of the template
@@ -9,17 +9,16 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     }
     
     cpu {
-      cores             = 4
+      cores             = var.cpu_cores
     }
     
     memory {
-      dedicated         = 4096
-    }
+      dedicated         = var.memory
     
     disk {
         datastore_id    = var.vm_datastore
         interface       = "scsi0"
-        size            = 30
+        size            = var.disk_size
         discard         = "on"
         ssd             = true
     }
@@ -27,8 +26,8 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
     # Test Server VLAN NIC
     network_device {
         bridge          = "vmbr1"
-        mac_address     = "BC:24:11:ED:F6:33"
-        vlan_id         = 100
+        mac_address     = var.mac_address
+        vlan_id         = var.vlan_id
         firewall        = true
     }
 
@@ -39,10 +38,13 @@ resource "proxmox_virtual_environment_vm" "vmus-test-k8s-01" {
         user_account {
             username    = "levix"
             keys        = [
-                file(var.ssh_pub_file) # microk8s pub key file.
+                file(var.ssh_pub_file) # SSH pub file key
             ]
         }
     }
 
   
 }
+
+}
+
