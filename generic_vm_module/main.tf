@@ -14,7 +14,8 @@ resource "proxmox_virtual_environment_vm" "generic_vm_module" {
     
     memory {
       dedicated         = var.memory
-    
+    }
+
     disk {
         datastore_id    = var.vm_datastore
         interface       = "scsi0"
@@ -23,7 +24,6 @@ resource "proxmox_virtual_environment_vm" "generic_vm_module" {
         ssd             = true
     }
     
-    # Test Server VLAN NIC
     network_device {
         bridge          = "vmbr1"
         mac_address     = var.mac_address
@@ -46,5 +46,4 @@ resource "proxmox_virtual_environment_vm" "generic_vm_module" {
   
 }
 
-}
 
