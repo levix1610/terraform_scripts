@@ -51,7 +51,7 @@ provider "proxmox" {
     
     # API Credentials (passing the values received from TF_VAR_... env vars):
     api_token_id        = var.prod.api_token_id
-    api_token_secret    = var.api_token_secret
+    api_token_secret    = var.prod.api_token_secret
     
     # ... include all other variables required by the microk8s_cluster module
 }
