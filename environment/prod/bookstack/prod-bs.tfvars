@@ -3,7 +3,7 @@
 # All variables that must be defined    
     proxmox_node        = "pmx-mr-01"
     ssh_pub_file        = "~/.ssh/powers_prod.pub"
-    template_id         = 200
+    template_id         = 300 # Change to new image for oct 25
     vm_datastore        = "syn_nfs"
     vlan_id             = 150
     vm_name             = "vmus-prod-bks-01"
