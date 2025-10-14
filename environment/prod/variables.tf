@@ -57,12 +57,12 @@ variable "vlan_id" {
   description = "VLAN ID of the NIC."
 }
 
-variable "api_token_id" {
+variable "prod_api_token_id" {
   type        = string
   description = "The Proxmox API token ID."
 }
 
-variable "api_token_secret" {
+variable "prod_api_token_secret" {
   type        = string
   description = "The Proxmox API token secret."
   sensitive   = true
