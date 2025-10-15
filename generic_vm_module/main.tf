@@ -1,3 +1,5 @@
+# Main Logic Block to create a generic Proxmox Virtual Machine (with injected variables) to be used for any application. 
+
 resource "proxmox_virtual_environment_vm" "generic_vm_module" {
     vm_id               = var.vm_id
     node_name           = var.proxmox_node
