@@ -10,10 +10,10 @@ k8s_cluster_nodes = {
   
 }
 
-    proxmox_node = "pmx-test-gr-01"
+    proxmox_node = "pmx-test-wc-01"
     ssh_pub_file = "~/.ssh/microk8s_test_key.pub"
     template_id = 300 # new oct 2025 image
-    vm_datastore = "NNMe_01"
+    vm_datastore = "pmx_test_wc_nvme_01"
     vlan_id_primary = 100
     vlan_id_secondary = 250
  
