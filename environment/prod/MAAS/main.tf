@@ -25,7 +25,7 @@ provider "proxmox" {
 
     module "generic_vm_module" {
     # This tells Terraform where your core logic is located
-    source = "../../generic_vm_module"
+    source = "../../../generic_vm_module"
 
 
     # Pass all required variables from the Root Module to the Child Module.
