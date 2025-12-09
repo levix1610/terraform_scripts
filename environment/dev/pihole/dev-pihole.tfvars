@@ -1,10 +1,10 @@
 # Variables to build out the pihole server
 
 # All variables that must be defined    
-    proxmox_node        = "pmx-test-wc-01"
+    proxmox_node        = "pmx-wc-02"
     ssh_pub_file        = "~/.ssh/powers_prod.pub"
     template_id         = 300 # Change to new image for oct 25
-    vm_datastore        = "pmx-test-nvme"
+    vm_datastore        = "pmx_wc_02_nvme"
     vlan_id             = 100
     vm_name             = "vmus-test-phi-01"
     mac_address         = "02:00:10:47:46:36"
