@@ -4,7 +4,7 @@
     proxmox_node        = "pmx-mr-01"
     ssh_pub_file        = "~/.ssh/powers_prod.pub"
     template_id         = 300 # Change to new image for oct 25
-    vm_datastore        = "pmx_mr_01_nvme"
+    vm_datastore        = "pmx-mr-01-nvme"
     vlan_id             = 100
     vm_name             = "vmus-test-phi-01"
     mac_address         = "02:00:10:47:46:36"
