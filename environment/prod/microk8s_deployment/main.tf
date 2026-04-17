@@ -43,7 +43,6 @@ provider "proxmox" {
     template_id         = var.template_id
     vm_datastore        = var.vm_datastore
     vlan_id_primary     = var.vlan_id_primary
-    vlan_id_secondary   = var.vlan_id_secondary
     
     # API Credentials (passing the values received from TF_VAR_... env vars):
     api_token_id        = var.prod_api_token_id
