@@ -39,11 +39,6 @@ variable "vlan_id_primary" {
   description = "VLAN ID of the NIC for first primary Network"
 }
 
-variable "vlan_id_secondary" {
-  type        = number
-  description = "VLAN ID of the NIC for the secondary (worker) Network"
-}
-
 variable "api_token_id" {
   type        = string
   description = "The Proxmox API token ID."

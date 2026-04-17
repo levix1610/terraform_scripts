@@ -25,7 +25,7 @@ resource "proxmox_virtual_environment_vm" "k8s_cluster_nodes" {
     ssd          = true
   }
 
-  # Network Device 1: K8s Data VLAN (Primary)
+  # Network Device : K8s Data VLAN (Primary)
   network_device {
     bridge      = "vmbr1"
     mac_address = each.value.prime_nic
@@ -33,18 +33,7 @@ resource "proxmox_virtual_environment_vm" "k8s_cluster_nodes" {
     firewall    = true
   }
 
-  # Network Device 2: K8s Data VLAN (Secondary) - Conditional
-  dynamic "network_device" {
-    for_each = each.value.sec_nic != null ? [1] : []
-    content {
-      bridge      = "vmbr1"
-      mac_address = each.value.sec_nic
-      vlan_id     = var.vlan_id_secondary
-      firewall    = true
-    }
-  }
-
-  initialization {
+   initialization {
     user_account {
       username = "levix"
       keys     = [
