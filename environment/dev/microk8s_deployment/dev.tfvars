@@ -2,11 +2,11 @@
 
 
 k8s_cluster_nodes = {
-    "vmus-k8s-01" = { vmid = 1010060, name = "vmus-test-k8s-01", prime_nic = "BC:24:11:ED:F6:33" },
-    "vmus-k8s-02" = { vmid = 1010061, name = "vmus-test-k8s-02", prime_nic = "BC:24:11:3A:06:E0" },
-    "vmus-k8s-03" = { vmid = 1010062, name = "vmus-test-k8s-03", prime_nic = "BC:24:11:AA:36:5F" },
-    "vmus-k8s-04" = { vmid = 1010063, name = "vmus-test-k8s-04", prime_nic = "BC:24:11:0D:E4:D1" },
-    "vmus-k8s-05" = { vmid = 1010064, name = "vmus-test-k8s-05", prime_nic = "BC:24:11:2D:57:09" }
+    "vmus-k8s-01" = { vmid = 101052, name = "vmus-dev-k8s-01", prime_nic = "02:00:10:ed:f7:77" },
+    "vmus-k8s-02" = { vmid = 101053, name = "vmus-dev-k8s-02", prime_nic = "02:00:10:1a:0f:a8" },
+    "vmus-k8s-03" = { vmid = 101054, name = "vmus-dev-k8s-03", prime_nic = "02:00:10:ca:e4:49" },
+    "vmus-k8s-04" = { vmid = 101055, name = "vmus-dev-k8s-04", prime_nic = "02:00:10:37:66:03" },
+    "vmus-k8s-05" = { vmid = 101056, name = "vmus-dev-k8s-05", prime_nic = "02:00:10:83:ae:7c" }
   
 }
 
