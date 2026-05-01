@@ -35,12 +35,12 @@ variable "vlan_id_primary" {
   description = "VLAN ID of the NIC for first primary Network"
 }
 
-variable "test_api_token_id" {
+variable "prod_api_token_id" {
   type        = string
   description = "The Proxmox API token ID."
 }
 
-variable "test_api_token_secret" {
+variable "prod_api_token_secret" {
   type        = string
   description = "The Proxmox API token secret."
   sensitive   = true
