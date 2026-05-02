@@ -14,7 +14,7 @@ terraform {
 
 # Connection/communication to the server
 provider "proxmox" {
-    endpoint            = "https://10.0.250.10:8006/"
+    endpoint            = "https://10.0.250.51:8006/"
     api_token           = "${var.prod_api_token_id}=${var.prod_api_token_secret}"
     insecure            = true
 }
