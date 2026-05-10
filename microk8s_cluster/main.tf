@@ -14,7 +14,10 @@ resource "proxmox_virtual_environment_vm" "k8s_cluster_nodes" {
     full  = true
   }
 
-  cpu { cores = 4 }
+  cpu { 
+      cores = 4
+      type = "x86-64-v2-AES"
+  }
   memory { dedicated = 4096 }
 
   disk {
