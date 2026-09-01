@@ -37,6 +37,9 @@ resource "proxmox_virtual_environment_vm" "k8s_cluster_nodes" {
   }
 
    initialization {
+    
+    datastore_id = var.vm_datastore
+
     user_account {
       username = "levix"
       keys     = [
