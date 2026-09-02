@@ -39,6 +39,7 @@ resource "proxmox_virtual_environment_vm" "k8s_cluster_nodes" {
    initialization {
     
     datastore_id = var.vm_datastore
+    interface    = "ide2" # Forces Proxmox provider to attach/manage this slot directly
 
     user_account {
       username = "levix"
