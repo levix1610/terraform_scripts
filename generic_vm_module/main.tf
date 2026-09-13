@@ -36,6 +36,9 @@ resource "proxmox_virtual_environment_vm" "generic_vm_module" {
      # Config for Cloud-Init settings to inject SSH key
     initialization {
 
+        datastore_id = var.vm_datastore
+        interface    = "ide2" # Forces Proxmox provider to attach/manage this slot directly
+
         # User to add the ssh key for
         user_account {
             username    = "levix"
