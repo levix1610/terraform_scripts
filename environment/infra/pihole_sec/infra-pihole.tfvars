@@ -10,5 +10,5 @@
     mac_address         = "02:00:10:f6:8f:3c"
     cpu_cores           = 2
     disk_size           = 30
-    vm_id               = 101502
+    vm_id               = 10103
     memory              = 2048
